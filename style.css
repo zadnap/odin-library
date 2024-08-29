@@ -7,6 +7,7 @@
 html {
   font-size: 16px;
   font-family: Arial, Helvetica, sans-serif;
+  height: 100vh;
 }
 
 ul {
@@ -18,6 +19,7 @@ button {
 }
 
 body {
+  height: 100%;
   padding: 20px;
   background-color: #00000011;
 }
@@ -48,4 +50,32 @@ body {
   background-color: white;
   padding: 10px;
   border-radius: 5px;
+}
+
+.add-dialog {
+  position: fixed;
+  top: 10vh;
+  margin: 0 auto;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px 3px #00000011;
+}
+.add-dialog form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.add-dialog form input:not([type="radio"]) {
+  display: block;
+  margin-top: 5px;
+  padding: 7px 10px;
+}
+.add-dialog form fieldset {
+  padding: 10px;
+}
+
+.submit {
+  padding: 5px;
 }
