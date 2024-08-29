@@ -1,4 +1,16 @@
-const bookList = [];
+let currentId = 0;
+let bookList = [];
+
+function Book(id, title, author, pages, isRead) {
+  this.id = id;
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.isRead = isRead;
+}
+Book.prototype.removeBook = function () {
+  bookList = bookList.filter((book) => book.id !== this.id);
+};
 
 const addBtn = document.querySelector(".add-btn");
 const addBookModal = document.querySelector(".add-dialog");
@@ -14,7 +26,10 @@ addForm.addEventListener("submit", () => {
   const checkedRadio = document.querySelector('input[type="radio"]:checked');
   const isRead = checkedRadio.value === "not-yet" ? false : true;
 
-  addBook(title, author, pages, isRead);
+  const book = new Book(currentId, title, author, pages, isRead);
+  currentId++;
+
+  addBook(book);
   renderBooks();
 });
 
@@ -23,30 +38,29 @@ bookListArea.addEventListener("click", (e) => {
   const removeBtns = Array.from(document.querySelectorAll(".remove"));
 
   if (removeBtns.includes(e.target)) {
-    removeBook(Number(removeBtns.id));
+    const book = bookList.find((book) => book.id == e.target.parentElement.id);
+    book.removeBook();
     renderBooks();
   }
 });
 
-function addBook(title, author, pages, isRead) {
-  bookList.push({ title, author, pages, isRead });
-}
-
-function removeBook(index) {
-  bookList.splice(index, 1);
+function addBook(book) {
+  bookList.push(book);
 }
 
 function renderBooks() {
   const list = document.querySelector(".book-list ul");
   list.innerHTML = "";
-  bookList.forEach((book, index) => {
+  bookList.forEach((book) => {
     const listItem = document.createElement("li");
+    listItem.id = book.id;
+
     listItem.innerHTML = `
         <p>Title: ${book.title}</p>
         <p>Author: ${book.author}</p>
         <p>Pages: ${book.pages}</p>
         <p>Read: ${book.isRead ? "yes" : "not yet"}</p>
-        <button class="remove" id="${index}">Remove</button>`;
+        <button class="remove">Remove</button>`;
     list.appendChild(listItem);
   });
 }
