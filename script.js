@@ -18,6 +18,16 @@ addForm.addEventListener("submit", () => {
   renderBooks();
 });
 
+const bookListArea = document.querySelector(".book-list ul");
+bookListArea.addEventListener("click", (e) => {
+  const removeBtns = Array.from(document.querySelectorAll(".remove"));
+
+  if (removeBtns.includes(e.target)) {
+    removeBook(Number(removeBtns.id));
+    renderBooks();
+  }
+});
+
 function addBook(title, author, pages, isRead) {
   bookList.push({ title, author, pages, isRead });
 }
@@ -29,14 +39,14 @@ function removeBook(index) {
 function renderBooks() {
   const list = document.querySelector(".book-list ul");
   list.innerHTML = "";
-  bookList.forEach((book) => {
+  bookList.forEach((book, index) => {
     const listItem = document.createElement("li");
     listItem.innerHTML = `
         <p>Title: ${book.title}</p>
         <p>Author: ${book.author}</p>
         <p>Pages: ${book.pages}</p>
         <p>Read: ${book.isRead ? "yes" : "not yet"}</p>
-        <button class="remove">Remove</button>`;
+        <button class="remove" id="${index}">Remove</button>`;
     list.appendChild(listItem);
   });
 }
