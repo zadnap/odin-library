@@ -17,24 +17,35 @@
       <form action="" method="dialog">
         <p>
           <label for="title">Title</label>
-          <input id="title" type="text" placeholder="Book's title" />
+          <input required id="title" type="text" placeholder="Book's title" />
         </p>
         <p>
           <label for="author">Author</label>
-          <input id="author" type="text" placeholder="Book's author" />
+          <input required id="author" type="text" placeholder="Book's author" />
         </p>
         <p>
           <label for="pages">Pages</label>
-          <input id="pages" type="tel" placeholder="Book's number of pages" />
+          <input
+            required
+            id="pages"
+            type="tel"
+            placeholder="Book's number of pages"
+          />
         </p>
         <fieldset>
           <legend>Have you read it ?</legend>
           <p>
-            <input type="radio" name="read" id="read" />
+            <input required type="radio" name="read" id="read" value="read" />
             <label for="read">Read</label>
           </p>
           <p>
-            <input type="radio" name="read" id="not-yet" />
+            <input
+              required
+              type="radio"
+              name="read"
+              id="not-yet"
+              value="not-yet"
+            />
             <label for="not-yet">Not yet</label>
           </p>
         </fieldset>
