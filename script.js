@@ -1,16 +1,19 @@
 let currentId = 0;
 let bookList = [];
 
-function Book(id, title, author, pages, isRead) {
-  this.id = id;
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.isRead = isRead;
+class Book {
+  constructor(id, title, author, pages, isRead) {
+    this.id = id;
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.isRead = isRead;
+  }
+
+  removeBook() {
+    bookList = bookList.filter((book) => book.id !== this.id);
+  }
 }
-Book.prototype.removeBook = function () {
-  bookList = bookList.filter((book) => book.id !== this.id);
-};
 
 const addBtn = document.querySelector(".add-btn");
 const addBookModal = document.querySelector(".add-dialog");
